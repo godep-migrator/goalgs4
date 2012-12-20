@@ -5,7 +5,8 @@ TARGETS := \
 	$(REPO_BASE)/algs4-flips \
 	$(REPO_BASE)/algs4-gcd \
 	$(REPO_BASE)/algs4-rolls \
-	$(REPO_BASE)/algs4-randomseq
+	$(REPO_BASE)/algs4-randomseq \
+	$(REPO_BASE)/algs4-average
 
 test: build
 	go test -x $(TARGETS)

@@ -3,9 +3,37 @@ package algs4
 import (
 	"bufio"
 	"io"
+	"os"
 	"strconv"
 	"strings"
 )
+
+type inputWrapper struct {
+	Inbuf *bufio.Reader
+}
+
+var (
+	Stdin = &inputWrapper{}
+)
+
+func init() {
+	Stdin.Inbuf = bufio.NewReader(os.Stdin)
+}
+
+func (in *inputWrapper) ReadDouble() (float64, error) {
+	line, err := in.Inbuf.ReadString('\n')
+
+	if err != nil {
+		return float64(0), err
+	}
+
+	dbl, err := strconv.ParseFloat(strings.TrimSpace(line), 64)
+	if err != nil {
+		return float64(0), err
+	}
+
+	return dbl, nil
+}
 
 func ReadInts(inbuf io.Reader) ([]int, error) {
 	ints := make([]int, 0)
