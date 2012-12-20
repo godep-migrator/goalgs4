@@ -1,12 +1,12 @@
 package main
 
 import (
-	"crypto/rand"
 	"fmt"
 	"math"
-	"math/big"
+	"math/rand"
 	"os"
 	"strconv"
+	"time"
 )
 
 import (
@@ -21,7 +21,9 @@ func main() {
 		os.Exit(1)
 	}
 
-	nflips, err := strconv.ParseInt(os.Args[1], 10, 32)
+	rand.Seed(time.Now().UTC().UnixNano())
+
+	nflips, err := strconv.Atoi(os.Args[1])
 	if err != nil {
 		fmt.Println("Wat.", err)
 		os.Exit(2)
@@ -30,16 +32,8 @@ func main() {
 	heads := algs4.NewCounter("heads")
 	tails := algs4.NewCounter("tails")
 
-	randMax := big.NewInt(2)
-
-	for t := int64(0); t < nflips; t += int64(1) {
-		n, err := rand.Int(rand.Reader, randMax)
-		if err != nil {
-			fmt.Println("Ugh:", err)
-			os.Exit(4)
-		}
-
-		if n.Int64() < 1 {
+	for t := 0; t < nflips; t++ {
+		if rand.Float64() > 0.5 {
 			heads.Increment()
 		} else {
 			tails.Increment()
