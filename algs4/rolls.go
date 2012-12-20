@@ -6,17 +6,20 @@ import (
 
 const ROLL_SIDES = 6
 
-func Rolls(nrolls int64) ([]*Counter, error) {
-	rolls := make([]*Counter, ROLL_SIDES+1)
-	for i := 1; i <= ROLL_SIDES; i += 1 {
-		rolls[i] = NewCounter(fmt.Sprintf("%d's", i))
+func Rolls(nrolls int) []*Counter {
+	var rolls []*Counter
+
+	for i := 0; i < ROLL_SIDES; i++ {
+		rolls = append(rolls, NewCounter(fmt.Sprintf("%d's", i+1)))
 	}
 
 	randMax := float64(ROLL_SIDES)
+	zero := float64(0.0)
 
-	for t := int64(0); t < nrolls; t++ {
-		rolls[int(RandomUniform(float64(0.0), randMax))+1].Increment()
+	for t := 0; t < nrolls; t++ {
+		result := int(RandomUniform(zero, randMax))
+		rolls[result].Increment()
 	}
 
-	return rolls, nil
+	return rolls
 }
