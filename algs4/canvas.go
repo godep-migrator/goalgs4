@@ -112,7 +112,7 @@ func (me *Canvas) Draw() error {
 	for evt := range me.window.EventChan() {
 		switch evt := evt.(type) {
 		case ui.KeyEvent:
-			if evt.Key == ' ' {
+			if evt.Key == 'q' {
 				return nil
 			}
 		}
