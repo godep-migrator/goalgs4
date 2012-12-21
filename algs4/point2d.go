@@ -1,9 +1,10 @@
 package algs4
 
 type Point2D struct {
-	X      float64
-	Y      float64
-	Canvas *Canvas
+	X float64
+	Y float64
+
+	canvas *Canvas
 }
 
 func NewPoint2D(x, y float64, canvas *Canvas) *Point2D {
@@ -12,12 +13,13 @@ func NewPoint2D(x, y float64, canvas *Canvas) *Point2D {
 	}
 
 	return &Point2D{
-		X:      x,
-		Y:      y,
-		Canvas: canvas,
+		X: x,
+		Y: y,
+
+		canvas: canvas,
 	}
 }
 
 func (me *Point2D) Draw() {
-	return
+	me.canvas.Pixel(me.X, me.Y)
 }

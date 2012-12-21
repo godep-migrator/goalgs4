@@ -86,7 +86,8 @@ func (me *Canvas) Rectangle(x, y, halfWidth, halfHeight float64) error {
 	hs := me.factorY(f2 * halfHeight)
 
 	if ws <= 1 && hs <= 1 {
-		return me.Pixel(x, y)
+		me.Pixel(x, y)
+		return nil
 	}
 
 	draw.Draw(me.img, image.Rect(int(xs-ws/f2), int(ys-hs/f2), int(ws), int(hs)),
@@ -95,8 +96,11 @@ func (me *Canvas) Rectangle(x, y, halfWidth, halfHeight float64) error {
 	return nil
 }
 
-func (me *Canvas) Pixel(x, y float64) error {
-	return nil
+func (me *Canvas) Pixel(x, y float64) {
+	originX, originY := int(me.scaleX(x)), int(me.scaleY(y))
+	draw.Draw(me.img, image.Rect(originX, originY, originX+1, originY+1),
+		&image.Uniform{image.White}, image.ZP, draw.Src)
+	me.window.FlushImage()
 }
 
 func (me *Canvas) Draw() error {
