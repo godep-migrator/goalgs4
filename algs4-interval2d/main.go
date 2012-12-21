@@ -67,7 +67,11 @@ func main() {
 		}
 	}
 
-	algs4.Draw()
+	err = algs4.Draw()
+	if err != nil {
+		die(err)
+	}
+
 	fmt.Println(c)
 	fmt.Printf("area = %.2f\n", box.Area())
 }

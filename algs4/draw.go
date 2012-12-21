@@ -1,12 +1,35 @@
 package algs4
 
-var (
-	DefaultCanvas = &Canvas{}
+import (
+	"errors"
+	"image"
+	"image/draw"
+
+	"code.google.com/p/x-go-binding/ui"
+	"code.google.com/p/x-go-binding/ui/x11"
 )
 
-type Canvas struct {
-}
+func Draw() error {
+	img := DefaultCanvas.Image()
+	if img == nil {
+		return errors.New("DefaultCanvas's image is nil!")
+	}
 
-func Draw() {
-	return
+	w, err := x11.NewWindow()
+	if err != nil {
+		return err
+	}
+
+	draw.Draw(w.Screen(), w.Screen().Bounds(), img, image.ZP, draw.Src)
+	w.FlushImage()
+
+	for evt := range w.EventChan() {
+		switch evt := evt.(type) {
+		case ui.KeyEvent:
+			if evt.Key == ' ' {
+				return nil
+			}
+		}
+	}
+	return nil
 }

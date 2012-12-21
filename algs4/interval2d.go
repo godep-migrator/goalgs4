@@ -19,13 +19,15 @@ func NewInterval2D(xint, yint *Interval1D, canvas *Canvas) *Interval2D {
 }
 
 func (me *Interval2D) Contains(p *Point2D) bool {
-	return false
+	return me.Xint.Contains(p.X) && me.Yint.Contains(p.Y)
 }
 
 func (me *Interval2D) Draw() {
-	return
+	xc := (me.Xint.Left + me.Xint.Right) / 2.0
+	yc := (me.Yint.Left + me.Yint.Right) / 2.0
+	me.Canvas.Rectangle(xc, yc, me.Xint.Length()/2.0, me.Yint.Length()/2.0)
 }
 
 func (me *Interval2D) Area() float64 {
-	return float64(0)
+	return me.Xint.Length() * me.Yint.Length()
 }
