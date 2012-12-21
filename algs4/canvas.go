@@ -90,7 +90,9 @@ func (me *Canvas) Rectangle(x, y, halfWidth, halfHeight float64) error {
 		return nil
 	}
 
-	draw.Draw(me.img, image.Rect(int(xs-ws/f2), int(ys-hs/f2), int(ws), int(hs)),
+	originX, originY := int(xs-ws/f2), int(ys-hs/f2)
+	draw.Draw(me.img,
+		image.Rect(originX, originY, originX+int(ws), originY+int(hs)),
 		&image.Uniform{image.White}, image.ZP, draw.Src)
 
 	return nil
