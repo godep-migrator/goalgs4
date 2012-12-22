@@ -7,7 +7,8 @@ TARGETS := \
 	$(REPO_BASE)/algs4-rolls \
 	$(REPO_BASE)/algs4-randomseq \
 	$(REPO_BASE)/algs4-average \
-	$(REPO_BASE)/algs4-interval2d
+	$(REPO_BASE)/algs4-interval2d \
+	$(REPO_BASE)/algs4-date
 
 test: build
 	go test -x $(TARGETS)
