@@ -8,7 +8,9 @@ TARGETS := \
 	$(REPO_BASE)/algs4-randomseq \
 	$(REPO_BASE)/algs4-average \
 	$(REPO_BASE)/algs4-interval2d \
-	$(REPO_BASE)/algs4-date
+	$(REPO_BASE)/algs4-date \
+	$(REPO_BASE)/algs4-test-accumulator
+
 
 test: build
 	go test -x $(TARGETS)

@@ -41,11 +41,6 @@ type Canvas struct {
 }
 
 func NewCanvas(height, width int, xmin, xmax, ymin, ymax float64) (*Canvas, error) {
-	window, err := x11.NewWindow()
-	if err != nil {
-		return nil, err
-	}
-
 	canvas := &Canvas{
 		Height: height,
 		Width:  width,
@@ -55,10 +50,25 @@ func NewCanvas(height, width int, xmin, xmax, ymin, ymax float64) (*Canvas, erro
 		Ymax:   ymax,
 
 		img:    image.NewRGBA(image.Rect(0, 0, height, width)),
-		window: window,
+		window: nil,
 	}
 
 	return canvas, nil
+}
+
+func (me *Canvas) ensureHasWindow() error {
+	if me.window != nil {
+		return nil
+	}
+
+	window, err := x11.NewWindow()
+	if err != nil {
+		return err
+	}
+
+	me.window = window
+
+	return nil
 }
 
 func (me *Canvas) Image() *image.RGBA {
@@ -98,14 +108,26 @@ func (me *Canvas) Rectangle(x, y, halfWidth, halfHeight float64) error {
 	return nil
 }
 
-func (me *Canvas) Pixel(x, y float64) {
+func (me *Canvas) Pixel(x, y float64) error {
+	err := me.ensureHasWindow()
+	if err != nil {
+		return err
+	}
+
 	originX, originY := int(me.scaleX(x)), int(me.scaleY(y))
 	draw.Draw(me.img, image.Rect(originX, originY, originX+1, originY+1),
 		&image.Uniform{image.White}, image.ZP, draw.Src)
 	me.window.FlushImage()
+
+	return nil
 }
 
 func (me *Canvas) Draw() error {
+	err := me.ensureHasWindow()
+	if err != nil {
+		return err
+	}
+
 	draw.Draw(me.window.Screen(), me.window.Screen().Bounds(), me.img, image.ZP, draw.Src)
 	me.window.FlushImage()
 
