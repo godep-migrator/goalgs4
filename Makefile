@@ -9,7 +9,8 @@ TARGETS := \
 	$(REPO_BASE)/algs4-average \
 	$(REPO_BASE)/algs4-interval2d \
 	$(REPO_BASE)/algs4-date \
-	$(REPO_BASE)/algs4-test-accumulator
+	$(REPO_BASE)/algs4-test-accumulator \
+	$(REPO_BASE)/algs4-stats
 
 
 test: build

@@ -35,6 +35,15 @@ func (in *inputWrapper) ReadDouble() (float64, error) {
 	return dbl, nil
 }
 
+func (in *inputWrapper) IsEmpty() bool {
+	_, err := in.Inbuf.Peek(1)
+	if err != nil {
+		return true
+	}
+
+	return false
+}
+
 func ReadInts(inbuf io.Reader) ([]int, error) {
 	ints := make([]int, 0)
 
