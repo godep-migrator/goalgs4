@@ -28,4 +28,4 @@ deps:
 clean:
 	go clean -x -x $(TARGETS)
 
-.PHONY: test build clean fmt
+.PHONY: test build deps clean fmt
