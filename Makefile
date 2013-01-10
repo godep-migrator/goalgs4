@@ -1,16 +1,16 @@
-REPO_BASE := github.com/meatballhat/box-o-sand/algs4/src/go
+REPO_BASE := github.com/meatballhat/algs4
 TARGETS := \
-	$(REPO_BASE)/algs4 \
-	$(REPO_BASE)/algs4/algs4-binarysearch \
-	$(REPO_BASE)/algs4/algs4-flips \
-	$(REPO_BASE)/algs4/algs4-gcd \
-	$(REPO_BASE)/algs4/algs4-rolls \
-	$(REPO_BASE)/algs4/algs4-randomseq \
-	$(REPO_BASE)/algs4/algs4-average \
-	$(REPO_BASE)/algs4/algs4-interval2d \
-	$(REPO_BASE)/algs4/algs4-date \
-	$(REPO_BASE)/algs4/algs4-test-accumulator \
-	$(REPO_BASE)/algs4/algs4-stats
+	$(REPO_BASE) \
+	$(REPO_BASE)/algs4-binarysearch \
+	$(REPO_BASE)/algs4-flips \
+	$(REPO_BASE)/algs4-gcd \
+	$(REPO_BASE)/algs4-rolls \
+	$(REPO_BASE)/algs4-randomseq \
+	$(REPO_BASE)/algs4-average \
+	$(REPO_BASE)/algs4-interval2d \
+	$(REPO_BASE)/algs4-date \
+	$(REPO_BASE)/algs4-test-accumulator \
+	$(REPO_BASE)/algs4-stats
 
 
 test: build
