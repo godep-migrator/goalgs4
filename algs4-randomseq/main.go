@@ -8,7 +8,7 @@ import (
 )
 
 import (
-	"github.com/meatballhat/box-o-sand/algs4/src/go/algs4"
+	"github.com/meatballhat/algs4"
 )
 
 func die(err error) {

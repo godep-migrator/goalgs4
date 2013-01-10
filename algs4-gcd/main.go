@@ -7,7 +7,7 @@ import (
 )
 
 import (
-	"github.com/meatballhat/box-o-sand/algs4/src/go/algs4"
+	"github.com/meatballhat/algs4"
 )
 
 const USAGE string = `Usage: algs4-gcd <uint> <uint>`
