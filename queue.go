@@ -39,7 +39,7 @@ func (me *Queue) IsEmpty() bool {
 	return len(me.items) == 0
 }
 
-func (me *Queue) First() *QueueCursor {
+func (me *Queue) First() IterableCursor {
 	if me.IsEmpty() {
 		return nil
 	}
@@ -51,7 +51,7 @@ func (me *Queue) First() *QueueCursor {
 	}
 }
 
-func (me *QueueCursor) Next() *QueueCursor {
+func (me *QueueCursor) Next() IterableCursor {
 	i := me.i + 1
 
 	if i >= len(me.q.items) {
