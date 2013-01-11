@@ -8,19 +8,36 @@ import (
 	"strings"
 )
 
-type inputWrapper struct {
+type In struct {
 	Inbuf *bufio.Reader
+	Fd    *os.File
 }
 
 var (
-	Stdin = &inputWrapper{}
+	Stdin *In
 )
 
 func init() {
-	Stdin.Inbuf = bufio.NewReader(os.Stdin)
+	*(&Stdin) = &In{
+		Inbuf: bufio.NewReader(os.Stdin),
+		Fd:    os.Stdin,
+	}
 }
 
-func (in *inputWrapper) ReadDouble() (float64, error) {
+func NewIn(filename string) (*In, error) {
+	fd, err := os.Open(filename)
+	if err != nil {
+		return nil, err
+	}
+
+	newIn := &In{
+		Inbuf: bufio.NewReader(fd),
+		Fd:    fd,
+	}
+	return newIn, nil
+}
+
+func (in *In) ReadDouble() (float64, error) {
 	line, err := in.Inbuf.ReadString('\n')
 
 	if err != nil {
@@ -35,7 +52,22 @@ func (in *inputWrapper) ReadDouble() (float64, error) {
 	return dbl, nil
 }
 
-func (in *inputWrapper) IsEmpty() bool {
+func (in *In) ReadInt() (int64, error) {
+	line, err := in.Inbuf.ReadString('\n')
+
+	if err != nil {
+		return int64(0), err
+	}
+
+	i64, err := strconv.ParseInt(strings.TrimSpace(line), 10, 64)
+	if err != nil {
+		return int64(0), err
+	}
+
+	return i64, nil
+}
+
+func (in *In) IsEmpty() bool {
 	_, err := in.Inbuf.Peek(1)
 	if err != nil {
 		return true

@@ -10,7 +10,8 @@ TARGETS := \
 	$(REPO_BASE)/algs4-interval2d \
 	$(REPO_BASE)/algs4-date \
 	$(REPO_BASE)/algs4-test-accumulator \
-	$(REPO_BASE)/algs4-stats
+	$(REPO_BASE)/algs4-stats \
+	$(REPO_BASE)/algs4-queue-client
 
 
 test: build
