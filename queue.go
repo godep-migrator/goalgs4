@@ -4,6 +4,12 @@ type Queue struct {
 	items []interface{}
 }
 
+type QueueCursor struct {
+	Value interface{}
+	q     *Queue
+	i     int
+}
+
 func NewQueue() *Queue {
 	return &Queue{
 		items: []interface{}{},
@@ -31,4 +37,30 @@ func (me *Queue) Size() int {
 
 func (me *Queue) IsEmpty() bool {
 	return len(me.items) == 0
+}
+
+func (me *Queue) First() *QueueCursor {
+	if me.IsEmpty() {
+		return nil
+	}
+
+	return &QueueCursor{
+		Value: me.items[0],
+		i:     0,
+		q:     me,
+	}
+}
+
+func (me *QueueCursor) Next() *QueueCursor {
+	i := me.i + 1
+
+	if i >= len(me.q.items) {
+		return nil
+	}
+
+	return &QueueCursor{
+		Value: me.q.items[i],
+		i:     i,
+		q:     me.q,
+	}
 }
