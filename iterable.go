@@ -6,4 +6,5 @@ type Iterable interface {
 
 type IterableCursor interface {
 	Next() IterableCursor
+	Value() interface{}
 }

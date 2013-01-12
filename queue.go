@@ -5,9 +5,9 @@ type Queue struct {
 }
 
 type QueueCursor struct {
-	Value interface{}
-	q     *Queue
-	i     int
+	v interface{}
+	q *Queue
+	i int
 }
 
 func NewQueue() *Queue {
@@ -45,10 +45,14 @@ func (me *Queue) First() IterableCursor {
 	}
 
 	return &QueueCursor{
-		Value: me.items[0],
-		i:     0,
-		q:     me,
+		v: me.items[0],
+		i: 0,
+		q: me,
 	}
+}
+
+func (me *QueueCursor) Value() interface{} {
+	return me.v
 }
 
 func (me *QueueCursor) Next() IterableCursor {
@@ -59,8 +63,8 @@ func (me *QueueCursor) Next() IterableCursor {
 	}
 
 	return &QueueCursor{
-		Value: me.q.items[i],
-		i:     i,
-		q:     me.q,
+		v: me.q.items[i],
+		i: i,
+		q: me.q,
 	}
 }
