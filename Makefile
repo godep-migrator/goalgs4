@@ -1,4 +1,4 @@
-REPO_BASE := github.com/meatballhat/algs4
+REPO_BASE := github.com/meatballhat/goalgs4
 TARGETS := \
 	$(REPO_BASE) \
 	$(REPO_BASE)/algs4-binarysearch \
