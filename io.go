@@ -2,10 +2,11 @@ package algs4
 
 import (
 	"bufio"
+	"bytes"
 	"io"
 	"os"
 	"strconv"
-	"strings"
+	"unicode"
 )
 
 type In struct {
@@ -37,14 +38,20 @@ func NewIn(filename string) (*In, error) {
 	return newIn, nil
 }
 
-func (in *In) ReadDouble() (float64, error) {
-	line, err := in.Inbuf.ReadString('\n')
+func NewInFromReader(inbuf io.Reader) *In {
+	return &In{
+		Inbuf: bufio.NewReader(inbuf),
+		Fd:    nil,
+	}
+}
 
+func (in *In) ReadDouble() (float64, error) {
+	str, err := in.ReadString()
 	if err != nil {
 		return float64(0), err
 	}
 
-	dbl, err := strconv.ParseFloat(strings.TrimSpace(line), 64)
+	dbl, err := strconv.ParseFloat(str, 64)
 	if err != nil {
 		return float64(0), err
 	}
@@ -53,13 +60,12 @@ func (in *In) ReadDouble() (float64, error) {
 }
 
 func (in *In) ReadInt() (int64, error) {
-	line, err := in.Inbuf.ReadString('\n')
-
+	str, err := in.ReadString()
 	if err != nil {
 		return int64(0), err
 	}
 
-	i64, err := strconv.ParseInt(strings.TrimSpace(line), 10, 64)
+	i64, err := strconv.ParseInt(str, 10, 64)
 	if err != nil {
 		return int64(0), err
 	}
@@ -76,32 +82,46 @@ func (in *In) IsEmpty() bool {
 	return false
 }
 
-func ReadInts(inbuf io.Reader) ([]int, error) {
-	ints := make([]int, 0)
-
-	var i64 int64
-
-	fileReader := bufio.NewReader(inbuf)
-	line, err := fileReader.ReadString('\n')
-
-	for err == nil {
-		line = strings.TrimSpace(line)
-
-		if len(line) > 0 {
-			i64, err = strconv.ParseInt(line, 10, 32)
-
-			if err != nil {
-				return nil, err
-			}
-
-			ints = append(ints, int(i64))
-		}
-
-		line, err = fileReader.ReadString('\n')
+func (in *In) ReadString() (string, error) {
+	if in.IsEmpty() {
+		return "", io.EOF
 	}
 
-	if err != nil && err != io.EOF {
-		return nil, err
+	tok := &bytes.Buffer{}
+	inTok := false
+
+	for !in.IsEmpty() {
+		b, err := in.Inbuf.ReadByte()
+		if err != nil {
+			return string(bytes.TrimSpace(tok.Bytes())), err
+		}
+
+		if unicode.IsSpace(rune(b)) {
+			if inTok {
+				return string(tok.Bytes()), nil
+			}
+
+			continue
+		}
+
+		inTok = true
+		tok.WriteByte(b)
+	}
+
+	return "", io.EOF
+}
+
+func ReadInts(inbuf io.Reader) ([]int64, error) {
+	ints := make([]int64, 0)
+
+	in := NewInFromReader(inbuf)
+	for !in.IsEmpty() {
+		i64, err := in.ReadInt()
+		if err != nil {
+			return nil, err
+		}
+
+		ints = append(ints, i64)
 	}
 
 	return ints, nil

@@ -4,13 +4,11 @@ import (
 	"fmt"
 	"strings"
 	"testing"
-)
 
-import (
 	"github.com/meatballhat/goalgs4"
 )
 
-const INTS_STRING = `
+const intsString = `
 999
 848
 -7271
@@ -24,27 +22,32 @@ const INTS_STRING = `
 `
 
 func TestReadInts(t *testing.T) {
-	ints, err := algs4.ReadInts(strings.NewReader(INTS_STRING))
+	ints, err := algs4.ReadInts(strings.NewReader(intsString))
 
 	if err != nil {
-		t.Error("Wrong wrong wrong: ", err)
+		t.Errorf("Wrong wrong wrong: %v", err)
+		return
 	}
 
 	if ints == nil {
-		t.Error("Nothing in the ints!: ", ints)
+		t.Errorf("Nothing in the ints!: %v", ints)
+		return
 	}
 
 	fmt.Println("ints =", ints)
 
 	if ints[0] != 999 {
-		t.Error("fail on 0: 999 !=", ints[0])
+		t.Errorf("fail on 0: 999 != %v", ints[0])
+		return
 	}
 
 	if ints[4] != 71878 {
-		t.Error("fail on 4: 71878 !=", ints[4])
+		t.Errorf("fail on 4: 71878 != %v", ints[4])
+		return
 	}
 
 	if ints[6] != 0 {
-		t.Error("fail on 6: 0 !=", ints[6])
+		t.Errorf("fail on 6: 0 != %v", ints[6])
+		return
 	}
 }

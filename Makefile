@@ -12,7 +12,8 @@ TARGETS := \
 	$(REPO_BASE)/algs4-test-accumulator \
 	$(REPO_BASE)/algs4-stats \
 	$(REPO_BASE)/algs4-queue-client \
-	$(REPO_BASE)/algs4-stack-client
+	$(REPO_BASE)/algs4-stack-client \
+	$(REPO_BASE)/algs4-dijkstra-two-stack-eval
 
 
 test: build
@@ -21,13 +22,10 @@ test: build
 build: deps
 	go install -x $(TARGETS)
 
-fmt:
-	go fmt -x $(TARGETS)
-
 deps:
 	go get -x -n $(TARGETS)
 
 clean:
 	go clean -x -x $(TARGETS)
 
-.PHONY: test build deps clean fmt
+.PHONY: test build deps clean
