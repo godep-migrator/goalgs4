@@ -3,12 +3,18 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
 
 	. "github.com/meatballhat/goalgs4"
 )
 
 func main() {
-	stack := NewArrayStack()
+	var stack Stack
+	if len(os.Args) > 1 && os.Args[1] == "ll" {
+		stack = NewLinkedListStack()
+	} else {
+		stack = NewArrayStack()
+	}
 
 	for !Stdin.IsEmpty() {
 		i64, err := Stdin.ReadInt()
