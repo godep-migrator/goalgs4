@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	stack := NewStack()
+	stack := NewArrayStack()
 
 	for !Stdin.IsEmpty() {
 		i64, err := Stdin.ReadInt()

@@ -1,26 +1,26 @@
 package algs4
 
-type Stack struct {
+type ArrayStack struct {
 	items []interface{}
 }
 
-type StackCursor struct {
+type ArrayStackCursor struct {
 	v interface{}
-	s *Stack
+	s *ArrayStack
 	i int
 }
 
-func NewStack() *Stack {
-	return &Stack{
+func NewArrayStack() *ArrayStack {
+	return &ArrayStack{
 		items: []interface{}{},
 	}
 }
 
-func (me *Stack) Push(item interface{}) {
+func (me *ArrayStack) Push(item interface{}) {
 	me.items = append(me.items, item)
 }
 
-func (me *Stack) Pop() interface{} {
+func (me *ArrayStack) Pop() interface{} {
 	if me.IsEmpty() {
 		return nil
 	}
@@ -32,40 +32,40 @@ func (me *Stack) Pop() interface{} {
 	return lastItem
 }
 
-func (me *Stack) IsEmpty() bool {
+func (me *ArrayStack) IsEmpty() bool {
 	return len(me.items) == 0
 }
 
-func (me *Stack) Size() int {
+func (me *ArrayStack) Size() int {
 	return len(me.items)
 }
 
-func (me *Stack) First() IterableCursor {
+func (me *ArrayStack) First() IterableCursor {
 	if me.IsEmpty() {
 		return nil
 	}
 
 	last := len(me.items) - 1
 
-	return &StackCursor{
+	return &ArrayStackCursor{
 		v: me.items[last],
 		i: last,
 		s: me,
 	}
 }
 
-func (me *StackCursor) Value() interface{} {
+func (me *ArrayStackCursor) Value() interface{} {
 	return me.v
 }
 
-func (me *StackCursor) Next() IterableCursor {
+func (me *ArrayStackCursor) Next() IterableCursor {
 	i := me.i - 1
 
 	if i < 0 {
 		return nil
 	}
 
-	return &StackCursor{
+	return &ArrayStackCursor{
 		v: me.s.items[i],
 		i: i,
 		s: me.s,

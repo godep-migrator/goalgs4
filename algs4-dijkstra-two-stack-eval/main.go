@@ -11,8 +11,8 @@ import (
 )
 
 func main() {
-	ops := NewStack()
-	vals := NewStack()
+	ops := NewArrayStack()
+	vals := NewArrayStack()
 
 	for !Stdin.IsEmpty() {
 		s, err := Stdin.ReadString()
