@@ -23,7 +23,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	q := NewQueue()
+	q := NewArrayQueue()
 	for !in.IsEmpty() {
 		i64, err := in.ReadInt()
 		if err != nil {

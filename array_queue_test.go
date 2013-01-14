@@ -7,7 +7,7 @@ import (
 )
 
 func TestQueueIsIterable(t *testing.T) {
-	q := NewQueue()
+	q := NewArrayQueue()
 
 	for i := 0; i < 1000; i += 10 {
 		q.Enqueue(i)
