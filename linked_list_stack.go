@@ -1,5 +1,9 @@
 package algs4
 
+import (
+	"reflect"
+)
+
 type LinkedListStack struct {
 	first *Node
 	n     int
@@ -54,7 +58,7 @@ func (me *LinkedListStack) First() IterableCursor {
 	}
 }
 
-func (me *LinkedListStackCursor) Value() interface{} {
+func (me *LinkedListStackCursor) Value() reflect.Value {
 	return me.n.Value()
 }
 

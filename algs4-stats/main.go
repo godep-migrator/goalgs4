@@ -33,24 +33,15 @@ func main() {
 	sum := float64(0.0)
 
 	for cursor := numbers.First(); cursor != nil; cursor = cursor.Next() {
-		v := cursor.Value()
-		if val, ok := v.(float64); ok {
-			sum += val
-		} else {
-			fmt.Fprintf(os.Stderr, "%v is not a float64!", v)
-		}
+		sum += cursor.Value().Float()
 	}
 
 	mean := sum / float64(n)
 
 	sum = float64(0.0)
 	for cursor := numbers.First(); cursor != nil; cursor = cursor.Next() {
-		v := cursor.Value()
-		if val, ok := v.(float64); ok {
-			sum += (val - mean) * (val - mean)
-		} else {
-			fmt.Fprintf(os.Stderr, "%v is not a float64!", v)
-		}
+		val := cursor.Value().Float()
+		sum += (val - mean) * (val - mean)
 	}
 
 	std := math.Sqrt(sum / (float64(n) - float64(1)))

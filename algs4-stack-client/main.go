@@ -26,8 +26,6 @@ func main() {
 	}
 
 	for cursor := stack.First(); cursor != nil; cursor = cursor.Next() {
-		if i64, ok := cursor.Value().(int64); ok {
-			fmt.Println(i64)
-		}
+		fmt.Println(cursor.Value().Int())
 	}
 }

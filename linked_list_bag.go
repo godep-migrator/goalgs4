@@ -1,5 +1,9 @@
 package algs4
 
+import (
+	"reflect"
+)
+
 type LinkedListBag struct {
 	first *Node
 	n     int
@@ -42,7 +46,7 @@ func (me *LinkedListBag) First() IterableCursor {
 	}
 }
 
-func (me *LinkedListBagCursor) Value() interface{} {
+func (me *LinkedListBagCursor) Value() reflect.Value {
 	return me.n.Value()
 }
 

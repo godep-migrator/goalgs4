@@ -1,5 +1,9 @@
 package algs4
 
+import (
+	"reflect"
+)
+
 type ArrayStack struct {
 	items []interface{}
 }
@@ -54,8 +58,8 @@ func (me *ArrayStack) First() IterableCursor {
 	}
 }
 
-func (me *ArrayStackCursor) Value() interface{} {
-	return me.v
+func (me *ArrayStackCursor) Value() reflect.Value {
+	return reflect.ValueOf(me.v)
 }
 
 func (me *ArrayStackCursor) Next() IterableCursor {

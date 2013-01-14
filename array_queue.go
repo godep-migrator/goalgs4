@@ -1,5 +1,9 @@
 package algs4
 
+import (
+	"reflect"
+)
+
 type ArrayQueue struct {
 	items []interface{}
 }
@@ -51,8 +55,8 @@ func (me *ArrayQueue) First() IterableCursor {
 	}
 }
 
-func (me *ArrayQueueCursor) Value() interface{} {
-	return me.v
+func (me *ArrayQueueCursor) Value() reflect.Value {
+	return reflect.ValueOf(me.v)
 }
 
 func (me *ArrayQueueCursor) Next() IterableCursor {

@@ -1,5 +1,9 @@
 package algs4
 
+import (
+	"reflect"
+)
+
 type LinkedListQueue struct {
 	first *Node
 	last  *Node
@@ -65,7 +69,7 @@ func (me *LinkedListQueue) First() IterableCursor {
 	}
 }
 
-func (me *LinkedListQueueCursor) Value() interface{} {
+func (me *LinkedListQueueCursor) Value() reflect.Value {
 	return me.n.Value()
 }
 

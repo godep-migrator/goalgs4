@@ -1,5 +1,9 @@
 package algs4
 
+import (
+	"reflect"
+)
+
 type Iterable interface {
 	First() IterableCursor
 	IsEmpty() bool
@@ -8,5 +12,5 @@ type Iterable interface {
 
 type IterableCursor interface {
 	Next() IterableCursor
-	Value() interface{}
+	Value() reflect.Value
 }

@@ -1,5 +1,9 @@
 package algs4
 
+import (
+	"reflect"
+)
+
 type ArrayBag struct {
 	items []interface{}
 }
@@ -40,8 +44,8 @@ func (me *ArrayBag) First() IterableCursor {
 	}
 }
 
-func (me *ArrayBagCursor) Value() interface{} {
-	return me.v
+func (me *ArrayBagCursor) Value() reflect.Value {
+	return reflect.ValueOf(me.v)
 }
 
 func (me *ArrayBagCursor) Next() IterableCursor {
