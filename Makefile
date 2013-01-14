@@ -13,7 +13,8 @@ TARGETS := \
 	$(REPO_BASE)/algs4-stats \
 	$(REPO_BASE)/algs4-queue-client \
 	$(REPO_BASE)/algs4-stack-client \
-	$(REPO_BASE)/algs4-dijkstra-two-stack-eval
+	$(REPO_BASE)/algs4-dijkstra-two-stack-eval \
+	$(REPO_BASE)/algs4-stack-client2
 
 
 test: build
