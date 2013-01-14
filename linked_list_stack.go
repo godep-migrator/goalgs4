@@ -8,13 +8,10 @@ type LinkedListStack struct {
 type LinkedListStackCursor struct {
 	n *Node
 	s *LinkedListStack
-	i int
 }
 
 func NewLinkedListStack() *LinkedListStack {
-	return &LinkedListStack{
-		first: nil,
-	}
+	return &LinkedListStack{}
 }
 
 func (me *LinkedListStack) Push(item interface{}) {
