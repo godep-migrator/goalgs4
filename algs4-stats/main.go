@@ -5,7 +5,7 @@ import (
 	"math"
 	"os"
 
-	"github.com/meatballhat/goalgs4"
+	. "github.com/meatballhat/goalgs4"
 )
 
 func die(err error) {
@@ -14,10 +14,15 @@ func die(err error) {
 }
 
 func main() {
-	numbers := algs4.NewArrayBag()
+	var numbers Bag
+	if len(os.Args) > 1 && os.Args[1] == "ll" {
+		numbers = NewLinkedListBag()
+	} else {
+		numbers = NewArrayBag()
+	}
 
-	for !algs4.Stdin.IsEmpty() {
-		d, err := algs4.Stdin.ReadDouble()
+	for !Stdin.IsEmpty() {
+		d, err := Stdin.ReadDouble()
 		if err != nil {
 			break
 		}
