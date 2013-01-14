@@ -14,7 +14,7 @@ func die(err error) {
 }
 
 func main() {
-	numbers := algs4.NewBag()
+	numbers := algs4.NewArrayBag()
 
 	for !algs4.Stdin.IsEmpty() {
 		d, err := algs4.Stdin.ReadDouble()
@@ -27,22 +27,24 @@ func main() {
 	n := numbers.Size()
 	sum := float64(0.0)
 
-	for x := range numbers.Each() {
-		if val, ok := x.(float64); ok {
+	for cursor := numbers.First(); cursor != nil; cursor = cursor.Next() {
+		v := cursor.Value()
+		if val, ok := v.(float64); ok {
 			sum += val
 		} else {
-			fmt.Fprintf(os.Stderr, "%v is not a float64!", x)
+			fmt.Fprintf(os.Stderr, "%v is not a float64!", v)
 		}
 	}
 
 	mean := sum / float64(n)
 
 	sum = float64(0.0)
-	for x := range numbers.Each() {
-		if val, ok := x.(float64); ok {
+	for cursor := numbers.First(); cursor != nil; cursor = cursor.Next() {
+		v := cursor.Value()
+		if val, ok := v.(float64); ok {
 			sum += (val - mean) * (val - mean)
 		} else {
-			fmt.Fprintf(os.Stderr, "%v is not a float64!", x)
+			fmt.Fprintf(os.Stderr, "%v is not a float64!", v)
 		}
 	}
 
