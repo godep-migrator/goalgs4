@@ -16,19 +16,15 @@ func NewLinkedListQueue() Queue {
 }
 
 func (me *LinkedListQueue) Enqueue(item interface{}) {
+	oldlast := me.last
+	me.last = &Node{item: item}
+
 	if me.IsEmpty() {
-		node := &Node{item: item}
-		me.first = node
-		me.last = node
-		me.n++
-		return
+		me.first = me.last
+	} else {
+		oldlast.next = me.last
 	}
 
-	oldlast := me.last
-	me.last = &Node{
-		item: item,
-	}
-	oldlast.next = me.last
 	me.n++
 }
 
@@ -37,17 +33,17 @@ func (me *LinkedListQueue) Dequeue() interface{} {
 		return nil
 	}
 
+	item := me.first.item
 	oldfirst := me.first
 	me.first = oldfirst.next
 	oldfirst.next = nil
-
 	me.n--
 
 	if me.IsEmpty() {
 		me.last = nil
 	}
 
-	return oldfirst.item
+	return item
 }
 
 func (me *LinkedListQueue) Size() int {
