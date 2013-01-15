@@ -19,13 +19,13 @@ TARGETS := \
 
 
 test: build
-	go test -x $(TARGETS)
+	go test -x $(GOFLAGS) $(TARGETS)
 
 build: deps
-	go install -x $(TARGETS)
+	go install -x $(GOFLAGS) $(TARGETS)
 
 deps:
-	go get -x -n $(TARGETS)
+	go get -x -n $(GOFLAGS) $(TARGETS)
 
 clean:
 	go clean -x -x $(TARGETS)
