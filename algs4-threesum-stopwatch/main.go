@@ -15,10 +15,11 @@ func main() {
 		log.Fatal(err)
 	}
 
+	max := float64(1000000.0)
 	a := []int64{}
 
 	for i := int64(0); i < n; i++ {
-		a = append(a, int64(RandomUniform(float64(-1000000.0), float64(1000000.0))))
+		a = append(a, int64(RandomUniform(-max, max)))
 	}
 
 	timer := NewStopwatch()

@@ -15,11 +15,11 @@ func main() {
 }
 
 func timeTrial(n int64) (int64, time.Duration) {
-	max := int64(1000000)
+	max := float64(1000000)
 	a := []int64{}
 
 	for i := int64(0); i < n; i++ {
-		a = append(a, int64(RandomUniform(float64(-max), float64(max))))
+		a = append(a, int64(RandomUniform(-max, max)))
 	}
 
 	timer := NewStopwatch()
