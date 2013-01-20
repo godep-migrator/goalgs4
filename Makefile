@@ -1,6 +1,8 @@
 REPO_BASE := github.com/meatballhat/goalgs4
+LIBS := \
+	$(REPO_BASE)
 TARGETS := \
-	$(REPO_BASE) \
+	$(LIBS) \
 	$(REPO_BASE)/algs4-binarysearch \
 	$(REPO_BASE)/algs4-flips \
 	$(REPO_BASE)/algs4-gcd \
@@ -16,11 +18,12 @@ TARGETS := \
 	$(REPO_BASE)/algs4-dijkstra-two-stack-eval \
 	$(REPO_BASE)/algs4-stack-client2 \
 	$(REPO_BASE)/algs4-queue-client2 \
-	$(REPO_BASE)/algs4-threesum
+	$(REPO_BASE)/algs4-threesum \
+	$(REPO_BASE)/algs4-threesum-stopwatch
 
 
 test: build
-	go test -x $(GOFLAGS) $(TARGETS)
+	go test -x $(GOFLAGS) $(LIBS)
 
 build: deps
 	go install -x $(GOFLAGS) $(TARGETS)
