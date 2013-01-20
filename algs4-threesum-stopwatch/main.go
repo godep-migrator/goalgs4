@@ -22,25 +22,8 @@ func main() {
 	}
 
 	timer := NewStopwatch()
-	cnt := count(a)
+	cnt := ThreeSumCount(a)
 	elapsed := timer.ElapsedTime()
 
 	fmt.Printf("%v triples %v\n", cnt, elapsed)
-}
-
-func count(a []int64) int {
-	n := len(a)
-	cnt := 0
-
-	for i := 0; i < n; i++ {
-		for j := i + 1; j < n; j++ {
-			for k := j + 1; k < n; k++ {
-				if (a[i] + a[j] + a[k]) == 0 {
-					cnt++
-				}
-			}
-		}
-	}
-
-	return cnt
 }

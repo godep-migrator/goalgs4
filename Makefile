@@ -19,7 +19,8 @@ TARGETS := \
 	$(REPO_BASE)/algs4-stack-client2 \
 	$(REPO_BASE)/algs4-queue-client2 \
 	$(REPO_BASE)/algs4-threesum \
-	$(REPO_BASE)/algs4-threesum-stopwatch
+	$(REPO_BASE)/algs4-threesum-stopwatch \
+	$(REPO_BASE)/algs4-threesum-doubling-test
 
 
 test: build
