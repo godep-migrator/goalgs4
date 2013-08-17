@@ -3,7 +3,7 @@ package algs4_test
 import (
 	"testing"
 
-	. "github.com/meatballhat/goalgs4"
+	. "goalgs4"
 )
 
 func TestQueueIsIterable(t *testing.T) {

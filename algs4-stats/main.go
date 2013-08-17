@@ -5,7 +5,7 @@ import (
 	"math"
 	"os"
 
-	. "github.com/meatballhat/goalgs4"
+	. "goalgs4"
 )
 
 func die(err error) {

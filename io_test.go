@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/meatballhat/goalgs4"
+	"goalgs4"
 )
 
 const intsString = `

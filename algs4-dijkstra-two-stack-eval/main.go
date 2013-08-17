@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	. "github.com/meatballhat/goalgs4"
+	. "goalgs4"
 )
 
 func main() {

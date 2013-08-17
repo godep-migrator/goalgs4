@@ -5,7 +5,7 @@ import (
 )
 
 import (
-	"github.com/meatballhat/goalgs4"
+	"goalgs4"
 )
 
 func TestBinarySearchRank(t *testing.T) {

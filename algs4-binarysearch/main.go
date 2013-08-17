@@ -5,7 +5,7 @@ import (
 	"os"
 	"sort"
 
-	. "github.com/meatballhat/goalgs4"
+	. "goalgs4"
 )
 
 const USAGE string = `Usage: algs4-binarysearch <whitelist-file>
