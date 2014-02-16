@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	. "goalgs4"
+	. "github.com/meatballhat/goalgs4"
 )
 
 func main() {

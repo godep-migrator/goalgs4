@@ -2,10 +2,8 @@ package algs4_test
 
 import (
 	"testing"
-)
 
-import (
-	"goalgs4"
+	"github.com/meatballhat/goalgs4"
 )
 
 func TestBinarySearchRank(t *testing.T) {

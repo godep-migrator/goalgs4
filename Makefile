@@ -1,4 +1,4 @@
-REPO_BASE := goalgs4
+REPO_BASE := github.com/meatballhat/goalgs4
 LIBS := \
 	$(REPO_BASE)
 TARGETS := \
@@ -30,17 +30,14 @@ build: deps
 	go install -x $(GOFLAGS) $(TARGETS)
 
 deps:
-	if [ ! -d $${GOPATH%%:*}/src/goalgs4 ] ; then \
-		ln -sv $$PWD $${GOPATH%%:*}/src/goalgs4 ; \
+	if [ ! -d $${GOPATH%%:*}/src/$(REPO_BASE) ] ; then \
+		mkdir -p $$(dirname "$${GOPATH%%:*}/src/$(REPO_BASE)") ; \
+		ln -sv $$PWD $${GOPATH%%:*}/src/$(REPO_BASE) ; \
 	fi ; \
-	mkdir -p $${GOPATH%%:*}/src/code.google.com/p/ ; \
-	cd $${GOPATH%%:*}/src/code.google.com/p/ && \
-		if [ ! -d x-go-binding ] ; then \
-			hg clone https://code.google.com/p/x-go-binding ; \
-		fi ; \
-	cd x-go-binding && \
-		hg up -C c5ad9cbe0029
-	go get -x -n $(GOFLAGS) $(TARGETS)
+	godep restore
+
+save:
+	godep save -copy=false $(REPO_BASE)
 
 clean:
 	go clean -x -x $(TARGETS)

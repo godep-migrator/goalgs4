@@ -4,10 +4,8 @@ import (
 	"fmt"
 	"os"
 	"strconv"
-)
 
-import (
-	"goalgs4"
+	"github.com/meatballhat/goalgs4"
 )
 
 const (

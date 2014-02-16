@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	. "goalgs4"
+	. "github.com/meatballhat/goalgs4"
 )
 
 var (

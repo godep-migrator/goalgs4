@@ -1,0 +1,14 @@
+{
+	"ImportPath": "_/vagrant",
+	"GoVersion": "go1.2",
+	"Packages": [
+		"github.com/meatballhat/goalgs4"
+	],
+	"Deps": [
+		{
+			"ImportPath": "code.google.com/p/x-go-binding/ui",
+			"Comment": "null-19",
+			"Rev": "c5ad9cbe00295f08ade60298c8b6dc935bc9fc8f"
+		}
+	]
+}

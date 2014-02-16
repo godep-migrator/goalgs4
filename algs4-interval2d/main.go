@@ -7,10 +7,8 @@ import (
 	"os"
 	"strconv"
 	"time"
-)
 
-import (
-	"goalgs4"
+	"github.com/meatballhat/goalgs4"
 )
 
 func die(err error) {

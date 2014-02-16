@@ -6,7 +6,7 @@ import (
 	"os"
 	"strconv"
 
-	. "goalgs4"
+	. "github.com/meatballhat/goalgs4"
 )
 
 const USAGE string = "Usage: algs4-flips <nflips>"
