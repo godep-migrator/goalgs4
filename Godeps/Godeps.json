@@ -1,5 +1,5 @@
 {
-	"ImportPath": "_/vagrant",
+	"ImportPath": "github.com/meatballhat/goalgs4",
 	"GoVersion": "go1.2",
 	"Packages": [
 		"github.com/meatballhat/goalgs4"
